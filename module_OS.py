@@ -7,9 +7,9 @@
                             
 import os
 
-directory_path = '/Users/h/Desktop/'
+directory_path = '/Users/h/Desktop/cse106'
 
 contents = os.listdir(directory_path)
 
-for item in contents:
-    print(item)
+
+print(contents)
