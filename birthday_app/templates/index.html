@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        {% if name %}
+        <div class="birthday-message">
+            <h1 class="animated-text">Happy Birthday, {{ name }}!  </h1>
+            <div class="cake">
+                <div class="cake-top"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-bottom"></div>
+                <div class="candle"></div>
+                <div class="flame"></div>
+            </div>
+            <p class="wish">Amar ekta kotha chilo </p>
+            
+            <!-- Crush confession section -->
+            <div class="confession">
+                <p>Will you be my soulmate?</p>
+                <div class="buttons">
+                    <button class="yes-btn" onclick="acceptConfession()">Yes</button>
+                    <button class="no-btn" onmouseover="moveNoButton()">No</button>
+                </div>
+                <p id="responseMessage"></p>
+            </div>
+            
+            <button class="reset-btn" onclick="location.reload()">Celebrate Again!</button>
+        </div>
+        {% else %}
+        <div class="name-form">
+            <h1>Kar birthday re?</h1>
+            <form method="POST">
+                <input type="text" name="name" placeholder="Enter your name" required>
+                <button type="submit">Celebrate!</button>
+            </form>
+        </div>
+        {% endif %}
+        
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+    
+    <audio id="birthdaySong" src="{{ url_for('static', filename='hbd.mp3') }}" loop></audio>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if name %}
+            // Play birthday music when page loads with a name
+            var audio = document.getElementById('birthdaySong');
+            audio.volume = 1;
+            // Note: Browsers often block autoplay, so we'll trigger on user interaction
+            document.querySelector('.container').addEventListener('click', function() {
+                audio.play().catch(function(error) {
+                    console.log('Autoplay prevented:', error);
+                });
+            });
+            
+            // Create additional falling animations
+            createHearts();
+            {% endif %}
+        });
+        
+        function createHearts() {
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heart.style.opacity = Math.random();
+                document.body.appendChild(heart);
+            }
+        }
+        
+        // Crush confession functions
+        function acceptConfession() {
+            document.getElementById('responseMessage').textContent = "Jao! Amar shorom kore ❤️";
+            document.getElementById('responseMessage').style.color = "#ff4f4f";
+            document.querySelector('.no-btn').style.display = 'none';
+            document.querySelector('.yes-btn').style.display = 'none';
+            document.querySelector('.confession p:first-child').style.display = 'none';
+            
+            // Add more celebration elements
+            for (let i = 0; i < 20; i++) {
+                createHearts();
+            }
+        }
+        
+        function moveNoButton() {
+            const noButton = document.querySelector('.no-btn');
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Calculate random position within the container
+            const maxX = containerRect.width - noButton.offsetWidth;
+            const maxY = containerRect.height - noButton.offsetHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            noButton.style.position = 'absolute';
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>

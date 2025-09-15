@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Baloo 2', cursive;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    max-width: 90%;
+    width: 500px;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #ff6b6b;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.animated-text {
+    animation: colorChange 3s infinite alternate, bounce 2s infinite;
+}
+
+@keyframes colorChange {
+    0% { color: #ff6b6b; }
+    25% { color: #ff9e6b; }
+    50% { color: #ffde6b; }
+    75% { color: #6bff9e; }
+    100% { color: #6b9eff; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.name-form input {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: 2px solid #ff9e6b;
+    border-radius: 50px;
+    margin-right: 10px;
+    outline: none;
+    width: 70%;
+    max-width: 250px;
+}
+
+.name-form button, .reset-btn {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.name-form button:hover, .reset-btn:hover {
+    background: #ff4f4f;
+    transform: scale(1.05);
+}
+
+.wish {
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+    line-height: 1.6;
+}
+
+/* Cake Animation */
+.cake {
+    position:relative;
+    width: 50%;
+    height: 25%;
+    justify-content: center;
+    margin: 25%;
+    padding: none;
+}
+
+.cake-top {
+    width: 120px;
+    height: 40px;
+    background: #af9f8f;
+    border-radius: 10px 10px 0 0;
+}
+
+.cake-middle {
+    width: 140px;
+    height: 40px;
+    background: #ff6b6b;
+    margin-left: -10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.cake-bottom {
+    width: 160px;
+    height: 40px;
+    background: #4d1b1b;
+    margin-left: -20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.candle {
+    position: absolute;
+    width: 10px;
+    height: 25px;
+    background: #b62323; /* Changed from white to dark for visibility */
+    top: -25px;
+    left: 55px;
+    border-radius: 5px;
+}
+
+.flame {
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    background: #ffde6b;
+    top: -50px;
+    left: 52.5px;
+    border-radius: 50% 50% 20% 20%;
+    animation: flicker 0.5s infinite alternate;
+    transform-origin: center bottom;
+    box-shadow: 0 0 15px 5px rgba(255, 222, 107, 0.8);
+}
+
+@keyframes flicker {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+    100% { transform: scale(0.8); opacity: 0.8; }
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffde6b;
+    opacity: 0.7;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    top: -50px;
+    width: 20px;
+    height: 20px;
+    background: #ff6b6b;
+    transform: rotate(45deg);
+    animation: fallHeart linear forwards;
+}
+
+.heart:before, .heart:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart:before {
+    top: -10px;
+    left: 0;
+}
+
+.heart:after {
+    top: 0;
+    left: -10px;
+}
+
+@keyframes fallHeart {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Confession section */
+.confession {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+}
+
+.confession p {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 1rem;
+}
+
+.yes-btn, .no-btn {
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.yes-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.yes-btn:hover {
+    background: #45a049;
+    transform: scale(1.1);
+}
+
+.no-btn {
+    background: #f44336;
+    color: white;
+    position: relative;
+    transition: all 0.1s ease;
+}
+
+#responseMessage {
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-height: 30px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .name-form input {
+        width: 100%;
+        margin-bottom: 1rem;
+        margin-right: 0;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .yes-btn, .no-btn {
+        width: 100px;
+    }
+}

@@ -11,5 +11,4 @@ directory_path = '/Users/h/Desktop/cse106'
 
 contents = os.listdir(directory_path)
 
-
 print(contents)
