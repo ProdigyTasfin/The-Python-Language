@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Product Search System</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛒</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-shopping-cart"></i>
+                <span>ProductSearch</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active"><i class="fas fa-search"></i> Search</a>
+                <a href="#" class="nav-link"><i class="fas fa-project-diagram"></i> Graph</a>
+                <a href="#" class="nav-link"><i class="fas fa-robot"></i> AI</a>
+                <a href="#" class="nav-link"><i class="fas fa-chart-bar"></i> Analytics</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn btn-primary" id="connectApi">
+                    <i class="fas fa-plug"></i> API Connected
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-search-dollar"></i> E-Commerce Product Intelligence</h1>
+                <p class="subtitle">Advanced pattern matching with KMP algorithm & intelligent recommendations</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fas fa-microchip"></i>
+                        <span>KMP Algorithm</span>
+                        <small>O(n) Pattern Search</small>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span>BFS/DFS</span>
+                        <small>Graph Traversal</small>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-robot"></i>
+                        <span>AI Recommendations</span>
+                        <small>Smart Suggestions</small>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Real-time Analytics</span>
+                        <small>Live Updates</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Column -->
+            <div class="column-left">
+                <!-- Search Panel -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-search"></i> Pattern Search (KMP Algorithm)</h2>
+                        <span class="card-badge algorithm">O(n)</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="productsText"><i class="fas fa-list"></i> Product Database</label>
+                            <textarea id="productsText" rows="4" class="form-control" 
+                                      placeholder="Enter products (comma separated)...">
+Laptop, Smartphone, Headphones, Camera, Smartwatch, Printer, Tablet, Keyboard, Monitor, Mouse, Gaming Console, Speaker, Drone, VR Headset, Smart TV, Router, Hard Drive, SSD, Webcam, Microphone</textarea>
+                            <small class="form-help">Each product will be searched individually using KMP algorithm</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="searchPattern"><i class="fas fa-bullseye"></i> Search Pattern</label>
+                            <div class="input-group">
+                                <input type="text" id="searchPattern" class="form-control" 
+                                       placeholder="Enter pattern to search (e.g., 'phone', 'lap', 'smart')">
+                                <button id="searchBtn" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                            </div>
+                            <small class="form-help">Case-insensitive KMP pattern matching</small>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button id="clearSearch" class="btn btn-secondary">
+                                <i class="fas fa-eraser"></i> Clear
+                            </button>
+                            <button id="loadSample" class="btn btn-outline">
+                                <i class="fas fa-database"></i> Load Sample
+                            </button>
+                            <div class="form-switch">
+                                <label class="switch">
+                                    <input type="checkbox" id="realTimeSearch" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Real-time Search</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Panel -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-chart-bar"></i> Search Results</h2>
+                        <span class="card-badge" id="matchCount">0 matches</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="results-container" id="searchResults">
+                            <div class="empty-state">
+                                <i class="fas fa-search"></i>
+                                <h3>No Search Results</h3>
+                                <p>Enter a search pattern to find matching products</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Graph Panel -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-project-diagram"></i> Product Relationship Graph</h2>
+                        <div class="card-actions">
+                            <button id="redrawGraph" class="btn btn-sm">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="graph-container">
+                            <canvas id="productGraph" width="800" height="400"></canvas>
+                        </div>
+                        <div class="graph-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #4a6fa5;"></span>
+                                <span>Product Node</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #4fc3a1;"></span>
+                                <span>Selected Product</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #ff6b6b;"></span>
+                                <span>Recommendation Path</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="column-right">
+                <!-- Products Panel -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-boxes"></i> Product Catalog</h2>
+                        <span class="card-badge" id="productCount">10 products</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="product-filters">
+                            <input type="text" placeholder="Filter products..." class="form-control" id="productFilter">
+                            <select class="form-control" id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Audio">Audio</option>
+                                <option value="Wearables">Wearables</option>
+                                <option value="Office">Office</option>
+                                <option value="Accessories">Accessories</option>
+                            </select>
+                        </div>
+                        
+                        <div class="products-grid" id="productsContainer">
+                            <!-- Products will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recommendations Panel -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-robot"></i> AI Recommendations</h2>
+                        <span class="card-badge ai">AI Powered</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="selectedProduct"><i class="fas fa-star"></i> Selected Product</label>
+                            <div class="input-group">
+                                <select id="selectedProduct" class="form-control">
+                                    <option value="">Choose a product...</option>
+                                </select>
+                                <div class="product-preview" id="selectedProductPreview">
+                                    <i class="fas fa-question-circle"></i>
+                                    <span>No product selected</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="algorithm-selector">
+                            <h4><i class="fas fa-sitemap"></i> Recommendation Algorithm</h4>
+                            <div class="algorithm-buttons">
+                                <button id="runBFS" class="btn btn-algorithm bfs">
+                                    <i class="fas fa-expand-arrows-alt"></i> BFS
+                                    <small>Breadth-First</small>
+                                </button>
+                                <button id="runDFS" class="btn btn-algorithm dfs">
+                                    <i class="fas fa-code-branch"></i> DFS
+                                    <small>Depth-First</small>
+                                </button>
+                                <button id="runHybrid" class="btn btn-algorithm hybrid">
+                                    <i class="fas fa-brain"></i> Hybrid AI
+                                    <small>Intelligent</small>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-results" id="recommendationResults">
+                            <div class="empty-state">
+                                <i class="fas fa-route"></i>
+                                <h3>No Recommendations</h3>
+                                <p>Select a product and run an algorithm</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- System Info Panel -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-info-circle"></i> System Information</h2>
+                        <span class="card-badge" id="systemStatus">Online</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-server"></i>
+                                <div>
+                                    <strong>Backend API</strong>
+                                    <span id="apiStatus">Connected</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-database"></i>
+                                <div>
+                                    <strong>Products</strong>
+                                    <span id="dbCount">10 items</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-network-wired"></i>
+                                <div>
+                                    <strong>Graph Nodes</strong>
+                                    <span id="graphNodes">10 nodes</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-bolt"></i>
+                                <div>
+                                    <strong>Performance</strong>
+                                    <span id="performance">Optimal</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-stats">
+                            <h4><i class="fas fa-chart-line"></i> System Metrics</h4>
+                            <div class="progress-item">
+                                <span>Search Speed</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                                <small>95% (KMP O(n))</small>
+                            </div>
+                            <div class="progress-item">
+                                <span>Accuracy</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 98%"></div>
+                                </div>
+                                <small>98% precise</small>
+                            </div>
+                            <div class="progress-item">
+                                <span>Memory Usage</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 65%"></div>
+                                </div>
+                                <small>65% optimized</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-shopping-cart"></i> ProductSearch v1.0</h4>
+                    <p>Advanced e-commerce search and recommendation system</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Algorithms</h4>
+                    <ul>
+                        <li>KMP Pattern Matching</li>
+                        <li>BFS Traversal</li>
+                        <li>DFS Traversal</li>
+                        <li>Graph Visualization</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Live Stats</h4>
+                    <div class="live-stats">
+                        <div class="stat">
+                            <i class="fas fa-search"></i>
+                            <span id="totalSearches">0</span>
+                            <small>Searches</small>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-microchip"></i>
+                            <span id="totalMatches">0</span>
+                            <small>Matches</small>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span id="totalRecommendations">0</span>
+                            <small>AI Recs</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>System</h4>
+                    <p id="serverTime">Loading...</p>
+                    <p id="uptime">Uptime: 00:00:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 E-Commerce Product Intelligence System | Built with Flask & Vanilla JS</p>
+                <div class="footer-links">
+                    <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#"><i class="fas fa-code"></i> API Docs</a>
+                    <a href="#"><i class="fas fa-book"></i> Documentation</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <h3 id="loadingMessage">Processing...</h3>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification System -->
+    <div id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
