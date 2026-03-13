@@ -1,3 +1,5 @@
+print("Without changing the format: ")
+
 a = (input("Enter your 1st number: "))
 b = (input("Enter your 2nd number: "))
 
@@ -15,6 +17,7 @@ print("Type of a is", s)
 print("Type of a is", d)
 
 #Again with proper way: 
+print("Proper Way: ")
 
 a = int(input("Enter your 1st number: "))
 b = float(input("Enter your 2nd number: "))
