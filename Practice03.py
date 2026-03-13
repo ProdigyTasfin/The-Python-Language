@@ -1,4 +1,4 @@
-# Write a Program, taking two numbers from user and showing an average of its. 
+# Q: Write a Program, taking two numbers from user and showing an average of its. 
 # Difficulty: Easy
 
 num1 = float(input("Enter 1st Number: "))
