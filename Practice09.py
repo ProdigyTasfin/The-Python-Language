@@ -1,7 +1,12 @@
 #  Program that calculates factorial of a number. 
 
-number = int(input("Enter Your Number: "))
+# Difficulty: Bear Minimum Hard
 
-for i in number:
-    factorial = number * (number - i)
-    print(factorial)
+number = int(input("Enter a number: "))
+
+factorial = 1
+
+for i in range(1, number + 1):
+    factorial = factorial * i
+
+print("Factorial is:", factorial)

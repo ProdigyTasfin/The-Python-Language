@@ -4,5 +4,7 @@
 num1 = int(input("Enter your 1st Number: "))
 num2 = int(input("Enter your 2nd Number: "))
 
-print("The Sum of the two numbers is:", sum(num1,num2))
+result = num1 + num2 
+
+print("The Sum of the two numbers is:", result)
 

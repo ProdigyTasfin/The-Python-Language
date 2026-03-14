@@ -4,5 +4,12 @@
 
 i = 1
 
-for i in range(50):
+for i in range(1,51):
+    print(i)
+
+# Q: Print numbers 10 to 1 using range(). 
+
+# Difficulty: Easy
+
+for i in range(10,0,-1):
     print(i)
