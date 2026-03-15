@@ -4,7 +4,7 @@ friends = ["Alice", "Apple", True, 10, 3.14, None, "Charlie", "Bob"]
 # In this we can change the list
 # but we can't the change the string
 
-print(friends[1])
+print("Previous", friends[1])
 friends[1] = "Mike"
 print("index 1:", friends[1])
 
@@ -13,11 +13,11 @@ print("friends[0:4]:", friends[0:4])
 # see the output! ['Alice', 'Mike', True, 10] there Apple --> Mike
 
 friends.append("Sakib")
-print("Adding new friends in the end: ", friends)
+print("Adding new friends in the append: ", friends)
 # ['Alice', 'Mike', True, 10, 3.14, None, 'Charlie', 'Bob', 'Sakib'] 
 
 friends.remove(True)
-print("Removed True from friends: ", friends)
+print("Removed 'True' from friends: ", friends)
 # ['Alice', 'Mike', 10, 3.14, None, 'Charlie', 'Bob', 'Sakib']
 
 friends.pop(2)
