@@ -1,6 +1,6 @@
 #  Program that calculates factorial of a number. 
 
-# Difficulty: Bear Minimum Hard
+# Difficulty: Bare Minimum Medium / Hard
 
 number = int(input("Enter a number: "))
 
