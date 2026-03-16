@@ -4,7 +4,7 @@
 
 # A set stores unique elements
 # Duplicate values are automatically removed
-# Sets are mutable but unordered
+# Sets are mutable but unordered but set's elements are immutable
 
 numbers = {1, 2, 3, 4, 4, 5}
 
@@ -84,22 +84,27 @@ print("Set B:", B)
 # Union (combine both sets)
 
 print("\nUnion:")
-print(A | B)
+# print(A | B)
+
+print(A.union(B))
 
 # Intersection (common elements)
 
 print("\nIntersection:")
-print(A & B)
+# print(A & B)
+print(A.intersection(B))
 
 # Difference
 
 print("\nDifference A - B:")
-print(A - B)
+# print(A - B)
+print(A.difference(B))
 
 # Symmetric Difference
 
 print("\nSymmetric Difference:")
-print(A ^ B)
+# print(A ^ B) 
+print(A.symmetric_difference(B))
 
 
 # --------------------------------------------
@@ -108,6 +113,7 @@ print(A ^ B)
 
 print("\nCheck if 2 is in set A:")
 print(2 in A)
+
 
 
 # --------------------------------------------
